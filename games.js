@@ -1,5 +1,11 @@
 const gamePattern = [];
 const buttonColours = ['red', 'blue', 'green', 'yellow'];
+const userClickedPattern = [];
+
+$('.btn').click(function () {
+  const userChosenColour = $(this).attr('id');
+  userClickedPattern.push(userChosenColour);
+});
 
 function nextSequence() {
   const randomNumber = Math.floor(Math.random() * 4);
