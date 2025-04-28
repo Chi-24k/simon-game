@@ -17,8 +17,8 @@ function animatePress(currentColour) {
   });
 }
 
-function playSound(randomChosenColour) {
-  const buttonAudio = new Audio('sounds/' + randomChosenColour + '.mp3');
+function playSound(audioName) {
+  const buttonAudio = new Audio('sounds/' + audioName + '.mp3');
   buttonAudio.play();
 }
 
