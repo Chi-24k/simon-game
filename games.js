@@ -5,7 +5,14 @@ const userClickedPattern = [];
 $('.btn').click(function () {
   const userChosenColour = $(this).attr('id');
   userClickedPattern.push(userChosenColour);
+
+  playSound(userChosenColour);
 });
+
+function playSound(randomChosenColour) {
+  const buttonAudio = new Audio('sounds/' + randomChosenColour + '.mp3');
+  buttonAudio.play();
+}
 
 function nextSequence() {
   const randomNumber = Math.floor(Math.random() * 4);
@@ -14,9 +21,7 @@ function nextSequence() {
 
   const selectButton = $('#' + randomChosenColour);
   selectButton.fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100); //thank you stackoverflow hehe
-
-  const buttonAudio = new Audio('sounds/' + randomChosenColour + '.mp3');
-  buttonAudio.play();
+  playSound(randomChosenColour);
 }
 
 $(document).keydown(function () {
