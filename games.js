@@ -1,6 +1,6 @@
 const gamePattern = [];
 const buttonColours = ['red', 'blue', 'green', 'yellow'];
-const userClickedPattern = [];
+let userClickedPattern = [];
 let started = false;
 let level = 0;
 
@@ -18,6 +18,7 @@ $('.btn').click(function () {
 
   playSound(userChosenColour);
   animatePress(userChosenColour);
+  checkAnswer(userClickedPattern.length - 1);
 });
 
 function animatePress(currentColour) {
@@ -33,8 +34,9 @@ function playSound(audioName) {
 }
 
 function nextSequence() {
+  userClickedPattern = [];
   level++;
-  $('#level-title').text('Level ' + level++);
+  $('#level-title').text('Level ' + level);
   const randomNumber = Math.floor(Math.random() * 4);
   const randomChosenColour = buttonColours[randomNumber];
   gamePattern.push(randomChosenColour);
@@ -42,4 +44,17 @@ function nextSequence() {
   const selectButton = $('#' + randomChosenColour);
   selectButton.fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100); //thank you stackoverflow hehe
   playSound(randomChosenColour);
+}
+
+function checkAnswer(currentLevel) {
+  if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
+    console.log('Success !');
+  }
+  if (gamePattern.length === userClickedPattern.length) {
+    setTimeout(function () {
+      nextSequence();
+    }, 1000);
+  } else {
+    console.log('Wrong');
+  }
 }
