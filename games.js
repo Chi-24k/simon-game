@@ -1,5 +1,5 @@
-const gamePattern = [];
 const buttonColours = ['red', 'blue', 'green', 'yellow'];
+let gamePattern = [];
 let userClickedPattern = [];
 let started = false;
 let level = 0;
@@ -39,7 +39,9 @@ function checkAnswer(currentLevel) {
       $('body').removeClass('game-over');
     }, 200);
 
-    $('level-title').text('Game Over, Press Any Key to Restart');
+    $('#level-title').text('Game Over, Press Any Key to Restart');
+
+    startOver();
   }
 }
 
@@ -66,4 +68,10 @@ function animatePress(currentColour) {
 function playSound(audioName) {
   const buttonAudio = new Audio('sounds/' + audioName + '.mp3');
   buttonAudio.play();
+}
+
+function startOver() {
+  level = 0;
+  gamePattern = [];
+  started = !started;
 }
